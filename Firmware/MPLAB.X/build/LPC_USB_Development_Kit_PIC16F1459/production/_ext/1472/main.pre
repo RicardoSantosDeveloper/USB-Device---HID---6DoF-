@@ -4834,7 +4834,7 @@ extern const BYTE configDescriptor1[];
 extern volatile BYTE CtrlTrfData[8];
 
 
-extern const struct{BYTE report[74];}hid_rpt01;
+extern const struct{BYTE report[78];}hid_rpt01;
 
 # 226 "../main.c"
 __config("__CONFIG", "pic", "FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_OFF & CP_OFF & BOREN_ON & CLKOUTEN_OFF & IESO_OFF & FCMEN_OFF");
@@ -4884,46 +4884,48 @@ struct
 BYTE X;
 BYTE Y;
 BYTE Z;
+BYTE Rx;
+BYTE Ry;
 BYTE Rz;
 } analog_stick;
 } members;
 BYTE val[7];
 } INPUT_CONTROLS;
 
-# 367
+# 369
 BYTE old_sw2,old_sw3;
 void* lastTransmission;
 
-# 423
+# 425
 INPUT_CONTROLS joystick_input @0x2050;
 BYTE hid_report[8] @(0x2050 + 64);
 
-# 538
+# 540
 void interrupt ISRCode()
 {
 
-# 548
+# 550
 }
 
-# 575
+# 577
 int main(void)
 
 {
 InitializeSystem();
 
-# 584
+# 586
 while(1)
 {
 
 
 USBDeviceTasks();
 
-# 605
+# 607
 ProcessIO();
 }
 }
 
-# 630
+# 632
 static void InitializeSystem(void)
 {
 
@@ -4934,14 +4936,14 @@ ANSELB = 0x10;
 
 ANSELC = 0x00;
 
-# 830
+# 832
 UserInit();
 
 USBDeviceInit();
 
 }
 
-# 855
+# 857
 void UserInit(void)
 {
 
@@ -4959,7 +4961,7 @@ lastTransmission = 0;
 
 }
 
-# 890
+# 892
 void ProcessIO(void)
 {
 
@@ -4972,7 +4974,7 @@ Joystick();
 
 }
 
-# 923
+# 925
 void Joystick(void)
 {
 
@@ -5032,7 +5034,7 @@ lastTransmission = USBTransferOnePacket(1,1,(BYTE*)&joystick_input,sizeof(joysti
 return;
 }
 
-# 1000
+# 1002
 BOOL Switch2IsPressed(void)
 {
 if(PORTAbits.RA3 != old_sw2)
@@ -5044,7 +5046,7 @@ return TRUE;
 return FALSE;
 }
 
-# 1027
+# 1029
 BOOL Switch3IsPressed(void)
 {
 if(PORTAbits.RA3 != old_sw3)
@@ -5056,7 +5058,7 @@ return TRUE;
 return FALSE;
 }
 
-# 1133
+# 1135
 void BlinkUSBStatus(void)
 {
 static WORD led_count=0;
@@ -5064,7 +5066,7 @@ static WORD led_count=0;
 if(led_count == 0)led_count = 10000U;
 led_count--;
 
-# 1145
+# 1147
 if(UCONbits.SUSPND == 1)
 {
 if(led_count==0)
@@ -5125,59 +5127,59 @@ LATCbits.LATC3 = 1;;
 
 }
 
-# 1245
+# 1247
 void USBCBSuspend(void)
 {
 
-# 1285
+# 1287
 }
 
-# 1308
+# 1310
 void USBCBWakeFromSuspend(void)
 {
 
-# 1344
+# 1346
 }
 
-# 1364
+# 1366
 void USBCB_SOF_Handler(void)
 {
 
 
 }
 
-# 1387
+# 1389
 void USBCBErrorHandler(void)
 {
 
-# 1407
+# 1409
 }
 
-# 1438
+# 1440
 void USBCBCheckOtherReq(void)
 {
 USBCheckHIDRequest();
 }
 
-# 1463
+# 1465
 void USBCBStdSetDscHandler(void)
 {
 
 }
 
-# 1489
+# 1491
 void USBCBInitEP(void)
 {
 
 USBEnableEndpoint(1,0x04|0x02|0x10|0x08);
 }
 
-# 1582
+# 1584
 void USBCBSendResume(void)
 {
 static WORD delay_count;
 
-# 1595
+# 1597
 if(RemoteWakeup == TRUE)
 {
 
@@ -5191,7 +5193,7 @@ USBCBWakeFromSuspend();
 UCONbits.SUSPND = 0;
 USBBusIsSuspended = FALSE;
 
-# 1615
+# 1617
 delay_count = 3600U;
 do
 {
@@ -5212,7 +5214,7 @@ UCONbits.RESUME = 0;
 }
 }
 
-# 1657
+# 1659
 BOOL USER_USB_CALLBACK_EVENT_HANDLER(int event, void *pdata, WORD size)
 {
 switch( event )
@@ -5243,7 +5245,7 @@ USBCBErrorHandler();
 break;
 case EVENT_TRANSFER_TERMINATED:
 
-# 1694
+# 1696
 break;
 default:
 break;

@@ -53,7 +53,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _configDescriptor1 `Cuc ~T0 @X0 -> 0 `x e ]
 [s S402 `uc 1 `uc 1 `us 1 `uc 1 `uc 1 ]
 [n S402 _USB_HID_DSC bLength bDescriptorType bcdHID bCountryCode bNumDsc ]
-[s S403 `uc -> 74 `i ]
+[s S403 `uc -> 78 `i ]
 [n S403 . report ]
 "384
 [v _hid_rpt01 `CS403 ~T0 @X0 0 e ]
@@ -3606,7 +3606,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usb_function_hid.h: 379: extern volatile CTRL_TRF_SETUP SetupPkt;
 [; ;usb_function_hid.h: 380: extern const BYTE configDescriptor1[];
 [; ;usb_function_hid.h: 381: extern volatile BYTE CtrlTrfData[8];
-[; ;usb_function_hid.h: 384: extern const struct{BYTE report[74];}hid_rpt01;
+[; ;usb_function_hid.h: 384: extern const struct{BYTE report[78];}hid_rpt01;
 "118 ../../../../Microchip/USB/HID Device Driver/usb_function_hid.c
 [v _idle_rate `uc ~T0 @X0 1 e ]
 [; ;usb_function_hid.c: 118: BYTE idle_rate;
@@ -3671,11 +3671,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usb_function_hid.c: 200: {
 "200
 {
-[; ;usb_function_hid.c: 201: { inPipes[0].pSrc.bRom = (const BYTE*)&hid_rpt01; inPipes[0].wCount.Val = 74; inPipes[0].info.Val = 0x40 | 0x80 | 0x00; };
+[; ;usb_function_hid.c: 201: { inPipes[0].pSrc.bRom = (const BYTE*)&hid_rpt01; inPipes[0].wCount.Val = 78; inPipes[0].info.Val = 0x40 | 0x80 | 0x00; };
 "201
 {
 [e = . . *U + &U _inPipes * -> -> -> 0 `i `ui `ux -> -> # *U &U _inPipes `ui `ux 0 1 -> &U _hid_rpt01 `*Cuc ]
-[e = . . *U + &U _inPipes * -> -> -> 0 `i `ui `ux -> -> # *U &U _inPipes `ui `ux 2 0 -> -> 74 `i `us ]
+[e = . . *U + &U _inPipes * -> -> -> 0 `i `ui `ux -> -> # *U &U _inPipes `ui `ux 2 0 -> -> 78 `i `us ]
 [e = . . *U + &U _inPipes * -> -> -> 0 `i `ui `ux -> -> # *U &U _inPipes `ui `ux 1 1 -> | | -> 64 `i -> 128 `i -> 0 `i `uc ]
 }
 "205

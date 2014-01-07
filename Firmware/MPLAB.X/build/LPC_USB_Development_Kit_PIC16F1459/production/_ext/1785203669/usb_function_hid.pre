@@ -4834,7 +4834,7 @@ extern const BYTE configDescriptor1[];
 extern volatile BYTE CtrlTrfData[8];
 
 
-extern const struct{BYTE report[74];}hid_rpt01;
+extern const struct{BYTE report[78];}hid_rpt01;
 
 # 118 "../../../../Microchip/USB/HID Device Driver/usb_function_hid.c"
 BYTE idle_rate;
@@ -4862,7 +4862,7 @@ break;
 case 0x22:
 
 {
-{ inPipes[0].pSrc.bRom = (const BYTE*)&hid_rpt01; inPipes[0].wCount.Val = 74; inPipes[0].info.Val = 0x40 | 0x80 | 0x00; };
+{ inPipes[0].pSrc.bRom = (const BYTE*)&hid_rpt01; inPipes[0].wCount.Val = 78; inPipes[0].info.Val = 0x40 | 0x80 | 0x00; };
 
 # 205
 }

@@ -3,8 +3,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S406 . square x o triangle L1 R1 L2 R2 select start left_stick right_stick home . ]
 [s S407 :4 `uc 1 :4 `uc 1 ]
 [n S407 . hat_switch . ]
-[s S408 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S408 . X Y Z Rz ]
+[s S408 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S408 . X Y Z Rx Ry Rz ]
 [s S405 `S406 1 `S407 1 `S408 1 ]
 [n S405 . buttons hat_switch analog_stick ]
 [u S404 `S405 1 `uc -> 7 `i ]
@@ -3635,7 +3635,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usb_function_hid.h: 379: extern volatile CTRL_TRF_SETUP SetupPkt;
 [; ;usb_function_hid.h: 380: extern const BYTE configDescriptor1[];
 [; ;usb_function_hid.h: 381: extern volatile BYTE CtrlTrfData[8];
-[; ;usb_function_hid.h: 384: extern const struct{BYTE report[74];}hid_rpt01;
+[; ;usb_function_hid.h: 384: extern const struct{BYTE report[78];}hid_rpt01;
 "226 ../main.c
 [p x FOSC=HS ]
 [p x WDTE=OFF ]
@@ -3690,551 +3690,553 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 354: BYTE X;
 [; ;main.c: 355: BYTE Y;
 [; ;main.c: 356: BYTE Z;
-[; ;main.c: 357: BYTE Rz;
-[; ;main.c: 358: } analog_stick;
-[; ;main.c: 359: } members;
-[; ;main.c: 360: BYTE val[7];
-[; ;main.c: 361: } INPUT_CONTROLS;
-"367
+[; ;main.c: 357: BYTE Rx;
+[; ;main.c: 358: BYTE Ry;
+[; ;main.c: 359: BYTE Rz;
+[; ;main.c: 360: } analog_stick;
+[; ;main.c: 361: } members;
+[; ;main.c: 362: BYTE val[7];
+[; ;main.c: 363: } INPUT_CONTROLS;
+"369
 [v _old_sw2 `uc ~T0 @X0 1 e ]
 [v _old_sw3 `uc ~T0 @X0 1 e ]
-[; ;main.c: 367: BYTE old_sw2,old_sw3;
-"368
+[; ;main.c: 369: BYTE old_sw2,old_sw3;
+"370
 [v _lastTransmission `*v ~T0 @X0 1 e ]
-[; ;main.c: 368: void* lastTransmission;
-"423
+[; ;main.c: 370: void* lastTransmission;
+"425
 [v _joystick_input `S404 ~T0 @X0 1 e@8272 ]
-[; ;main.c: 423: INPUT_CONTROLS joystick_input @0x2050;
-"424
+[; ;main.c: 425: INPUT_CONTROLS joystick_input @0x2050;
+"426
 [v _hid_report `uc ~T0 @X0 -> 8 `i e@8336 ]
-[; ;main.c: 424: BYTE hid_report[8] @(0x2050 + 64);
-"539
-[v F3805 `(v ~T0 @X0 1 tf ]
-[v _ISRCode `IF3805 ~T0 @X0 1 e ]
+[; ;main.c: 426: BYTE hid_report[8] @(0x2050 + 64);
+"541
+[v F3807 `(v ~T0 @X0 1 tf ]
+[v _ISRCode `IF3807 ~T0 @X0 1 e ]
 {
-[; ;main.c: 538: void interrupt ISRCode()
-[; ;main.c: 539: {
+[; ;main.c: 540: void interrupt ISRCode()
+[; ;main.c: 541: {
 [e :U _ISRCode ]
 [f ]
-[; ;main.c: 548: }
-"548
+[; ;main.c: 550: }
+"550
 [e :UE 409 ]
 }
-"577
+"579
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 575: int main(void)
-[; ;main.c: 577: {
+[; ;main.c: 577: int main(void)
+[; ;main.c: 579: {
 [e :U _main ]
 [f ]
-[; ;main.c: 578: InitializeSystem();
-"578
+[; ;main.c: 580: InitializeSystem();
+"580
 [e ( _InitializeSystem ..  ]
-[; ;main.c: 584: while(1)
-"584
+[; ;main.c: 586: while(1)
+"586
 [e :U 412 ]
-[; ;main.c: 585: {
-"585
+[; ;main.c: 587: {
+"587
 {
-[; ;main.c: 588: USBDeviceTasks();
-"588
+[; ;main.c: 590: USBDeviceTasks();
+"590
 [e ( _USBDeviceTasks ..  ]
-[; ;main.c: 605: ProcessIO();
-"605
+[; ;main.c: 607: ProcessIO();
+"607
 [e ( _ProcessIO ..  ]
-"606
+"608
 }
 [e :U 411 ]
-"584
+"586
 [e $U 412  ]
 [e :U 413 ]
-[; ;main.c: 606: }
-[; ;main.c: 607: }
-"607
+[; ;main.c: 608: }
+[; ;main.c: 609: }
+"609
 [e :UE 410 ]
 }
-"631
+"633
 [v _InitializeSystem `(v ~T0 @X0 1 sf ]
 {
-[; ;main.c: 630: static void InitializeSystem(void)
-[; ;main.c: 631: {
+[; ;main.c: 632: static void InitializeSystem(void)
+[; ;main.c: 633: {
 [e :U _InitializeSystem ]
 [f ]
-[; ;main.c: 634: ANSELA = 0x00;
-"634
-[e = _ANSELA -> -> 0 `i `uc ]
-[; ;main.c: 636: ANSELB = 0x10;
+[; ;main.c: 636: ANSELA = 0x00;
 "636
-[e = _ANSELB -> -> 16 `i `uc ]
-[; ;main.c: 638: ANSELC = 0x00;
+[e = _ANSELA -> -> 0 `i `uc ]
+[; ;main.c: 638: ANSELB = 0x10;
 "638
+[e = _ANSELB -> -> 16 `i `uc ]
+[; ;main.c: 640: ANSELC = 0x00;
+"640
 [e = _ANSELC -> -> 0 `i `uc ]
-[; ;main.c: 830: UserInit();
-"830
-[e ( _UserInit ..  ]
-[; ;main.c: 832: USBDeviceInit();
+[; ;main.c: 832: UserInit();
 "832
-[e ( _USBDeviceInit ..  ]
-[; ;main.c: 834: }
+[e ( _UserInit ..  ]
+[; ;main.c: 834: USBDeviceInit();
 "834
+[e ( _USBDeviceInit ..  ]
+[; ;main.c: 836: }
+"836
 [e :UE 414 ]
 }
-"856
+"858
 [v _UserInit `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 855: void UserInit(void)
-[; ;main.c: 856: {
+[; ;main.c: 857: void UserInit(void)
+[; ;main.c: 858: {
 [e :U _UserInit ]
 [f ]
-[; ;main.c: 858: LATC &= 0xF0; TRISC &= 0xF0;;
-"858
+[; ;main.c: 860: LATC &= 0xF0; TRISC &= 0xF0;;
+"860
 [e =& _LATC -> -> 240 `i `uc ]
 [e =& _TRISC -> -> 240 `i `uc ]
-[; ;main.c: 861: ;;
-[; ;main.c: 862: old_sw2 = PORTAbits.RA3;
-"862
+[; ;main.c: 863: ;;
+[; ;main.c: 864: old_sw2 = PORTAbits.RA3;
+"864
 [e = _old_sw2 . . _PORTAbits 0 3 ]
-[; ;main.c: 863: old_sw3 = PORTAbits.RA3;
-"863
+[; ;main.c: 865: old_sw3 = PORTAbits.RA3;
+"865
 [e = _old_sw3 . . _PORTAbits 0 3 ]
-[; ;main.c: 868: lastTransmission = 0;
-"868
-[e = _lastTransmission -> -> 0 `i `*v ]
-[; ;main.c: 870: }
+[; ;main.c: 870: lastTransmission = 0;
 "870
+[e = _lastTransmission -> -> 0 `i `*v ]
+[; ;main.c: 872: }
+"872
 [e :UE 415 ]
 }
-"891
+"893
 [v _ProcessIO `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 890: void ProcessIO(void)
-[; ;main.c: 891: {
+[; ;main.c: 892: void ProcessIO(void)
+[; ;main.c: 893: {
 [e :U _ProcessIO ]
 [f ]
-[; ;main.c: 893: BlinkUSBStatus();
-"893
+[; ;main.c: 895: BlinkUSBStatus();
+"895
 [e ( _BlinkUSBStatus ..  ]
-[; ;main.c: 896: if((USBDeviceState < CONFIGURED_STATE)||(UCONbits.SUSPND==1)) return;
-"896
+[; ;main.c: 898: if((USBDeviceState < CONFIGURED_STATE)||(UCONbits.SUSPND==1)) return;
+"898
 [e $ ! || < -> _USBDeviceState `i -> . `E3491 6 `i == -> . . _UCONbits 0 1 `i -> 1 `i 417  ]
 [e $UE 416  ]
 [e :U 417 ]
-[; ;main.c: 898: Joystick();
-"898
-[e ( _Joystick ..  ]
-[; ;main.c: 900: }
+[; ;main.c: 900: Joystick();
 "900
+[e ( _Joystick ..  ]
+[; ;main.c: 902: }
+"902
 [e :UE 416 ]
 }
-"924
+"926
 [v _Joystick `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 923: void Joystick(void)
-[; ;main.c: 924: {
+[; ;main.c: 925: void Joystick(void)
+[; ;main.c: 926: {
 [e :U _Joystick ]
 [f ]
-[; ;main.c: 926: if(!(lastTransmission==0?0:((volatile BDT_ENTRY*)lastTransmission)->STAT.UOWN))
-"926
+[; ;main.c: 928: if(!(lastTransmission==0?0:((volatile BDT_ENTRY*)lastTransmission)->STAT.UOWN))
+"928
 [e $ ! ! != ? == _lastTransmission -> -> 0 `i `*v : -> 0 `i -> . . . . *U -> _lastTransmission `*VS394 0 0 1 7 `i -> 0 `i 419  ]
-[; ;main.c: 927: {
-"927
-{
-[; ;main.c: 929: if(!PORTAbits.RA3)
+[; ;main.c: 929: {
 "929
+{
+[; ;main.c: 931: if(!PORTAbits.RA3)
+"931
 [e $ ! ! != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 420  ]
-[; ;main.c: 930: {
-"930
-{
-[; ;main.c: 932: joystick_input.members.buttons.x = 1;
+[; ;main.c: 932: {
 "932
-[e = . . . _joystick_input 0 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 933: joystick_input.members.buttons.square = 0;
-"933
-[e = . . . _joystick_input 0 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 934: joystick_input.members.buttons.o = 0;
-"934
-[e = . . . _joystick_input 0 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 935: joystick_input.members.buttons.triangle = 0;
-"935
-[e = . . . _joystick_input 0 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 936: joystick_input.members.buttons.L1 = 0;
-"936
-[e = . . . _joystick_input 0 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 937: joystick_input.members.buttons.R1 = 0;
-"937
-[e = . . . _joystick_input 0 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 938: joystick_input.members.buttons.L2 = 0;
-"938
-[e = . . . _joystick_input 0 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 939: joystick_input.members.buttons.R2 = 0;
-"939
-[e = . . . _joystick_input 0 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 940: joystick_input.members.buttons.select = 0;
-"940
-[e = . . . _joystick_input 0 0 8 -> -> 0 `i `uc ]
-[; ;main.c: 941: joystick_input.members.buttons.start = 0;
-"941
-[e = . . . _joystick_input 0 0 9 -> -> 0 `i `uc ]
-[; ;main.c: 942: joystick_input.members.buttons.left_stick = 0;
-"942
-[e = . . . _joystick_input 0 0 10 -> -> 0 `i `uc ]
-[; ;main.c: 943: joystick_input.members.buttons.right_stick = 0;
-"943
-[e = . . . _joystick_input 0 0 11 -> -> 0 `i `uc ]
-[; ;main.c: 944: joystick_input.members.buttons.home = 0;
-"944
-[e = . . . _joystick_input 0 0 12 -> -> 0 `i `uc ]
-[; ;main.c: 947: joystick_input.members.hat_switch.hat_switch = 0x2;
-"947
-[e = . . . _joystick_input 0 1 0 -> -> 2 `i `uc ]
-[; ;main.c: 951: joystick_input.members.analog_stick.X = 0;
-"951
-[e = . . . _joystick_input 0 2 0 -> -> 0 `i `uc ]
-[; ;main.c: 952: joystick_input.members.analog_stick.Y = 0;
-"952
-[e = . . . _joystick_input 0 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 955: lastTransmission = USBTransferOnePacket(1,1,(BYTE*)&joystick_input,sizeof(joystick_input));
-"955
-[e = _lastTransmission ( _USBTransferOnePacket (4 , , , -> -> 1 `i `uc -> -> 1 `i `uc -> &U _joystick_input `*uc -> -> # _joystick_input `ui `uc ]
-"957
-}
-[; ;main.c: 957: }
-[e $U 421  ]
-"958
-[e :U 420 ]
-[; ;main.c: 958: else
-[; ;main.c: 959: {
-"959
 {
-[; ;main.c: 963: joystick_input.val[0] = 0x00;
-"963
-[e = *U + &U . _joystick_input 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 964: joystick_input.val[1] = 0x00;
-"964
-[e = *U + &U . _joystick_input 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 967: joystick_input.val[2] = 0x08;
-"967
-[e = *U + &U . _joystick_input 1 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 8 `i `uc ]
-[; ;main.c: 970: joystick_input.val[3] = 0x80;
-"970
-[e = *U + &U . _joystick_input 1 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
-[; ;main.c: 971: joystick_input.val[4] = 0x80;
-"971
-[e = *U + &U . _joystick_input 1 * -> -> -> 4 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
-[; ;main.c: 972: joystick_input.val[5] = 0x80;
-"972
-[e = *U + &U . _joystick_input 1 * -> -> -> 5 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
-[; ;main.c: 973: joystick_input.val[6] = 0x80;
-"973
-[e = *U + &U . _joystick_input 1 * -> -> -> 6 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
-[; ;main.c: 976: lastTransmission = USBTransferOnePacket(1,1,(BYTE*)&joystick_input,sizeof(joystick_input));
-"976
+[; ;main.c: 934: joystick_input.members.buttons.x = 1;
+"934
+[e = . . . _joystick_input 0 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 935: joystick_input.members.buttons.square = 0;
+"935
+[e = . . . _joystick_input 0 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 936: joystick_input.members.buttons.o = 0;
+"936
+[e = . . . _joystick_input 0 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 937: joystick_input.members.buttons.triangle = 0;
+"937
+[e = . . . _joystick_input 0 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 938: joystick_input.members.buttons.L1 = 0;
+"938
+[e = . . . _joystick_input 0 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 939: joystick_input.members.buttons.R1 = 0;
+"939
+[e = . . . _joystick_input 0 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 940: joystick_input.members.buttons.L2 = 0;
+"940
+[e = . . . _joystick_input 0 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 941: joystick_input.members.buttons.R2 = 0;
+"941
+[e = . . . _joystick_input 0 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 942: joystick_input.members.buttons.select = 0;
+"942
+[e = . . . _joystick_input 0 0 8 -> -> 0 `i `uc ]
+[; ;main.c: 943: joystick_input.members.buttons.start = 0;
+"943
+[e = . . . _joystick_input 0 0 9 -> -> 0 `i `uc ]
+[; ;main.c: 944: joystick_input.members.buttons.left_stick = 0;
+"944
+[e = . . . _joystick_input 0 0 10 -> -> 0 `i `uc ]
+[; ;main.c: 945: joystick_input.members.buttons.right_stick = 0;
+"945
+[e = . . . _joystick_input 0 0 11 -> -> 0 `i `uc ]
+[; ;main.c: 946: joystick_input.members.buttons.home = 0;
+"946
+[e = . . . _joystick_input 0 0 12 -> -> 0 `i `uc ]
+[; ;main.c: 949: joystick_input.members.hat_switch.hat_switch = 0x2;
+"949
+[e = . . . _joystick_input 0 1 0 -> -> 2 `i `uc ]
+[; ;main.c: 953: joystick_input.members.analog_stick.X = 0;
+"953
+[e = . . . _joystick_input 0 2 0 -> -> 0 `i `uc ]
+[; ;main.c: 954: joystick_input.members.analog_stick.Y = 0;
+"954
+[e = . . . _joystick_input 0 2 1 -> -> 0 `i `uc ]
+[; ;main.c: 957: lastTransmission = USBTransferOnePacket(1,1,(BYTE*)&joystick_input,sizeof(joystick_input));
+"957
 [e = _lastTransmission ( _USBTransferOnePacket (4 , , , -> -> 1 `i `uc -> -> 1 `i `uc -> &U _joystick_input `*uc -> -> # _joystick_input `ui `uc ]
-"977
+"959
+}
+[; ;main.c: 959: }
+[e $U 421  ]
+"960
+[e :U 420 ]
+[; ;main.c: 960: else
+[; ;main.c: 961: {
+"961
+{
+[; ;main.c: 965: joystick_input.val[0] = 0x00;
+"965
+[e = *U + &U . _joystick_input 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 0 `i `uc ]
+[; ;main.c: 966: joystick_input.val[1] = 0x00;
+"966
+[e = *U + &U . _joystick_input 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 0 `i `uc ]
+[; ;main.c: 969: joystick_input.val[2] = 0x08;
+"969
+[e = *U + &U . _joystick_input 1 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 8 `i `uc ]
+[; ;main.c: 972: joystick_input.val[3] = 0x80;
+"972
+[e = *U + &U . _joystick_input 1 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
+[; ;main.c: 973: joystick_input.val[4] = 0x80;
+"973
+[e = *U + &U . _joystick_input 1 * -> -> -> 4 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
+[; ;main.c: 974: joystick_input.val[5] = 0x80;
+"974
+[e = *U + &U . _joystick_input 1 * -> -> -> 5 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
+[; ;main.c: 975: joystick_input.val[6] = 0x80;
+"975
+[e = *U + &U . _joystick_input 1 * -> -> -> 6 `i `ui `ux -> -> # *U &U . _joystick_input 1 `ui `ux -> -> 128 `i `uc ]
+[; ;main.c: 978: lastTransmission = USBTransferOnePacket(1,1,(BYTE*)&joystick_input,sizeof(joystick_input));
+"978
+[e = _lastTransmission ( _USBTransferOnePacket (4 , , , -> -> 1 `i `uc -> -> 1 `i `uc -> &U _joystick_input `*uc -> -> # _joystick_input `ui `uc ]
+"979
 }
 [e :U 421 ]
-"978
+"980
 }
 [e :U 419 ]
-[; ;main.c: 977: }
-[; ;main.c: 978: }
-[; ;main.c: 979: return;
-"979
-[e $UE 418  ]
+[; ;main.c: 979: }
 [; ;main.c: 980: }
-"980
+[; ;main.c: 981: return;
+"981
+[e $UE 418  ]
+[; ;main.c: 982: }
+"982
 [e :UE 418 ]
 }
-"1001
+"1003
 [v _Switch2IsPressed `(E5 ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1000: BOOL Switch2IsPressed(void)
-[; ;main.c: 1001: {
+[; ;main.c: 1002: BOOL Switch2IsPressed(void)
+[; ;main.c: 1003: {
 [e :U _Switch2IsPressed ]
 [f ]
-[; ;main.c: 1002: if(PORTAbits.RA3 != old_sw2)
-"1002
-[e $ ! != -> . . _PORTAbits 0 3 `i -> _old_sw2 `i 423  ]
-[; ;main.c: 1003: {
-"1003
-{
-[; ;main.c: 1004: old_sw2 = PORTAbits.RA3;
+[; ;main.c: 1004: if(PORTAbits.RA3 != old_sw2)
 "1004
-[e = _old_sw2 . . _PORTAbits 0 3 ]
-[; ;main.c: 1005: if(PORTAbits.RA3 == 0)
+[e $ ! != -> . . _PORTAbits 0 3 `i -> _old_sw2 `i 423  ]
+[; ;main.c: 1005: {
 "1005
-[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 424  ]
-[; ;main.c: 1006: return TRUE;
+{
+[; ;main.c: 1006: old_sw2 = PORTAbits.RA3;
 "1006
+[e = _old_sw2 . . _PORTAbits 0 3 ]
+[; ;main.c: 1007: if(PORTAbits.RA3 == 0)
+"1007
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 424  ]
+[; ;main.c: 1008: return TRUE;
+"1008
 [e ) -> . `E5 1 `E5 ]
 [e $UE 422  ]
 [e :U 424 ]
-"1007
+"1009
 }
 [e :U 423 ]
-[; ;main.c: 1007: }
-[; ;main.c: 1008: return FALSE;
-"1008
+[; ;main.c: 1009: }
+[; ;main.c: 1010: return FALSE;
+"1010
 [e ) -> . `E5 0 `E5 ]
 [e $UE 422  ]
-[; ;main.c: 1009: }
-"1009
+[; ;main.c: 1011: }
+"1011
 [e :UE 422 ]
 }
-"1028
+"1030
 [v _Switch3IsPressed `(E5 ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1027: BOOL Switch3IsPressed(void)
-[; ;main.c: 1028: {
+[; ;main.c: 1029: BOOL Switch3IsPressed(void)
+[; ;main.c: 1030: {
 [e :U _Switch3IsPressed ]
 [f ]
-[; ;main.c: 1029: if(PORTAbits.RA3 != old_sw3)
-"1029
-[e $ ! != -> . . _PORTAbits 0 3 `i -> _old_sw3 `i 426  ]
-[; ;main.c: 1030: {
-"1030
-{
-[; ;main.c: 1031: old_sw3 = PORTAbits.RA3;
+[; ;main.c: 1031: if(PORTAbits.RA3 != old_sw3)
 "1031
-[e = _old_sw3 . . _PORTAbits 0 3 ]
-[; ;main.c: 1032: if(PORTAbits.RA3 == 0)
+[e $ ! != -> . . _PORTAbits 0 3 `i -> _old_sw3 `i 426  ]
+[; ;main.c: 1032: {
 "1032
-[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 427  ]
-[; ;main.c: 1033: return TRUE;
+{
+[; ;main.c: 1033: old_sw3 = PORTAbits.RA3;
 "1033
+[e = _old_sw3 . . _PORTAbits 0 3 ]
+[; ;main.c: 1034: if(PORTAbits.RA3 == 0)
+"1034
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 427  ]
+[; ;main.c: 1035: return TRUE;
+"1035
 [e ) -> . `E5 1 `E5 ]
 [e $UE 425  ]
 [e :U 427 ]
-"1034
+"1036
 }
 [e :U 426 ]
-[; ;main.c: 1034: }
-[; ;main.c: 1035: return FALSE;
-"1035
+[; ;main.c: 1036: }
+[; ;main.c: 1037: return FALSE;
+"1037
 [e ) -> . `E5 0 `E5 ]
 [e $UE 425  ]
-[; ;main.c: 1036: }
-"1036
+[; ;main.c: 1038: }
+"1038
 [e :UE 425 ]
 }
-"1134
+"1136
 [v _BlinkUSBStatus `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1133: void BlinkUSBStatus(void)
-[; ;main.c: 1134: {
+[; ;main.c: 1135: void BlinkUSBStatus(void)
+[; ;main.c: 1136: {
 [e :U _BlinkUSBStatus ]
 [f ]
-"1135
-[v F3818 `us ~T0 @X0 1 s led_count ]
-[i F3818
+"1137
+[v F3820 `us ~T0 @X0 1 s led_count ]
+[i F3820
 -> -> 0 `i `us
 ]
-[; ;main.c: 1135: static WORD led_count=0;
-[; ;main.c: 1137: if(led_count == 0)led_count = 10000U;
-"1137
-[e $ ! == -> F3818 `ui -> -> 0 `i `ui 429  ]
-[e = F3818 -> -> 10000 `ui `us ]
+[; ;main.c: 1137: static WORD led_count=0;
+[; ;main.c: 1139: if(led_count == 0)led_count = 10000U;
+"1139
+[e $ ! == -> F3820 `ui -> -> 0 `i `ui 429  ]
+[e = F3820 -> -> 10000 `ui `us ]
 [e :U 429 ]
-[; ;main.c: 1138: led_count--;
-"1138
-[e -- F3818 -> -> 1 `i `us ]
-[; ;main.c: 1145: if(UCONbits.SUSPND == 1)
-"1145
-[e $ ! == -> . . _UCONbits 0 1 `i -> 1 `i 430  ]
-[; ;main.c: 1146: {
-"1146
-{
-[; ;main.c: 1147: if(led_count==0)
+[; ;main.c: 1140: led_count--;
+"1140
+[e -- F3820 -> -> 1 `i `us ]
+[; ;main.c: 1147: if(UCONbits.SUSPND == 1)
 "1147
-[e $ ! == -> F3818 `ui -> -> 0 `i `ui 431  ]
+[e $ ! == -> . . _UCONbits 0 1 `i -> 1 `i 430  ]
 [; ;main.c: 1148: {
 "1148
 {
-[; ;main.c: 1149: LATCbits.LATC2 = !LATCbits.LATC2;;
+[; ;main.c: 1149: if(led_count==0)
 "1149
-[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 1150: if(LATCbits.LATC2)
+[e $ ! == -> F3820 `ui -> -> 0 `i `ui 431  ]
+[; ;main.c: 1150: {
 "1150
-[e $ ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i 432  ]
-[; ;main.c: 1151: {
+{
+[; ;main.c: 1151: LATCbits.LATC2 = !LATCbits.LATC2;;
 "1151
-{
-[; ;main.c: 1152: LATCbits.LATC3 = 1;;
+[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;main.c: 1152: if(LATCbits.LATC2)
 "1152
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+[e $ ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i 432  ]
+[; ;main.c: 1153: {
 "1153
-}
-[; ;main.c: 1153: }
-[e $U 433  ]
-"1154
-[e :U 432 ]
-[; ;main.c: 1154: else
-[; ;main.c: 1155: {
-"1155
 {
-[; ;main.c: 1156: LATCbits.LATC3 = 0;;
+[; ;main.c: 1154: LATCbits.LATC3 = 1;;
+"1154
+[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+"1155
+}
+[; ;main.c: 1155: }
+[e $U 433  ]
 "1156
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+[e :U 432 ]
+[; ;main.c: 1156: else
+[; ;main.c: 1157: {
 "1157
-}
-[e :U 433 ]
+{
+[; ;main.c: 1158: LATCbits.LATC3 = 0;;
 "1158
-}
-[e :U 431 ]
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
 "1159
 }
-[; ;main.c: 1157: }
-[; ;main.c: 1158: }
-[; ;main.c: 1159: }
-[e $U 434  ]
+[e :U 433 ]
 "1160
-[e :U 430 ]
-[; ;main.c: 1160: else
-[; ;main.c: 1161: {
+}
+[e :U 431 ]
 "1161
-{
-[; ;main.c: 1162: if(USBDeviceState == DETACHED_STATE)
+}
+[; ;main.c: 1159: }
+[; ;main.c: 1160: }
+[; ;main.c: 1161: }
+[e $U 434  ]
 "1162
-[e $ ! == -> _USBDeviceState `i -> . `E3491 0 `i 435  ]
+[e :U 430 ]
+[; ;main.c: 1162: else
 [; ;main.c: 1163: {
 "1163
 {
-[; ;main.c: 1164: {LATCbits.LATC2 = 0;;LATCbits.LATC3 = 0;;};
+[; ;main.c: 1164: if(USBDeviceState == DETACHED_STATE)
 "1164
-{
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-}
+[e $ ! == -> _USBDeviceState `i -> . `E3491 0 `i 435  ]
+[; ;main.c: 1165: {
 "1165
-}
-[; ;main.c: 1165: }
-[e $U 436  ]
-"1166
-[e :U 435 ]
-[; ;main.c: 1166: else if(USBDeviceState == ATTACHED_STATE)
-[e $ ! == -> _USBDeviceState `i -> . `E3491 1 `i 437  ]
-[; ;main.c: 1167: {
-"1167
 {
-[; ;main.c: 1168: {LATCbits.LATC2 = 1;;LATCbits.LATC3 = 1;;};
+[; ;main.c: 1166: {LATCbits.LATC2 = 0;;LATCbits.LATC3 = 0;;};
+"1166
+{
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+}
+"1167
+}
+[; ;main.c: 1167: }
+[e $U 436  ]
 "1168
+[e :U 435 ]
+[; ;main.c: 1168: else if(USBDeviceState == ATTACHED_STATE)
+[e $ ! == -> _USBDeviceState `i -> . `E3491 1 `i 437  ]
+[; ;main.c: 1169: {
+"1169
+{
+[; ;main.c: 1170: {LATCbits.LATC2 = 1;;LATCbits.LATC3 = 1;;};
+"1170
 {
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 [e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
 }
-"1169
-}
-[; ;main.c: 1169: }
-[e $U 438  ]
-"1170
-[e :U 437 ]
-[; ;main.c: 1170: else if(USBDeviceState == POWERED_STATE)
-[e $ ! == -> _USBDeviceState `i -> . `E3491 2 `i 439  ]
-[; ;main.c: 1171: {
 "1171
-{
-[; ;main.c: 1172: {LATCbits.LATC2 = 1;;LATCbits.LATC3 = 0;;};
+}
+[; ;main.c: 1171: }
+[e $U 438  ]
 "1172
+[e :U 437 ]
+[; ;main.c: 1172: else if(USBDeviceState == POWERED_STATE)
+[e $ ! == -> _USBDeviceState `i -> . `E3491 2 `i 439  ]
+[; ;main.c: 1173: {
+"1173
+{
+[; ;main.c: 1174: {LATCbits.LATC2 = 1;;LATCbits.LATC3 = 0;;};
+"1174
 {
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 [e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
 }
-"1173
-}
-[; ;main.c: 1173: }
-[e $U 440  ]
-"1174
-[e :U 439 ]
-[; ;main.c: 1174: else if(USBDeviceState == DEFAULT_STATE)
-[e $ ! == -> _USBDeviceState `i -> . `E3491 3 `i 441  ]
-[; ;main.c: 1175: {
 "1175
-{
-[; ;main.c: 1176: {LATCbits.LATC2 = 0;;LATCbits.LATC3 = 1;;};
+}
+[; ;main.c: 1175: }
+[e $U 440  ]
 "1176
+[e :U 439 ]
+[; ;main.c: 1176: else if(USBDeviceState == DEFAULT_STATE)
+[e $ ! == -> _USBDeviceState `i -> . `E3491 3 `i 441  ]
+[; ;main.c: 1177: {
+"1177
+{
+[; ;main.c: 1178: {LATCbits.LATC2 = 0;;LATCbits.LATC3 = 1;;};
+"1178
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 [e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
 }
-"1177
-}
-[; ;main.c: 1177: }
-[e $U 442  ]
-"1178
-[e :U 441 ]
-[; ;main.c: 1178: else if(USBDeviceState == ADDRESS_STATE)
-[e $ ! == -> _USBDeviceState `i -> . `E3491 5 `i 443  ]
-[; ;main.c: 1179: {
 "1179
-{
-[; ;main.c: 1180: if(led_count == 0)
+}
+[; ;main.c: 1179: }
+[e $U 442  ]
 "1180
-[e $ ! == -> F3818 `ui -> -> 0 `i `ui 444  ]
+[e :U 441 ]
+[; ;main.c: 1180: else if(USBDeviceState == ADDRESS_STATE)
+[e $ ! == -> _USBDeviceState `i -> . `E3491 5 `i 443  ]
 [; ;main.c: 1181: {
 "1181
 {
-[; ;main.c: 1182: LATCbits.LATC2 = !LATCbits.LATC2;;
+[; ;main.c: 1182: if(led_count == 0)
 "1182
-[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 1183: LATCbits.LATC3 = 0;;
+[e $ ! == -> F3820 `ui -> -> 0 `i `ui 444  ]
+[; ;main.c: 1183: {
 "1183
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+{
+[; ;main.c: 1184: LATCbits.LATC2 = !LATCbits.LATC2;;
 "1184
+[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;main.c: 1185: LATCbits.LATC3 = 0;;
+"1185
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+"1186
 }
 [e :U 444 ]
-"1185
-}
-[; ;main.c: 1184: }
-[; ;main.c: 1185: }
-[e $U 445  ]
-"1186
-[e :U 443 ]
-[; ;main.c: 1186: else if(USBDeviceState == CONFIGURED_STATE)
-[e $ ! == -> _USBDeviceState `i -> . `E3491 6 `i 446  ]
-[; ;main.c: 1187: {
 "1187
-{
-[; ;main.c: 1188: if(led_count==0)
+}
+[; ;main.c: 1186: }
+[; ;main.c: 1187: }
+[e $U 445  ]
 "1188
-[e $ ! == -> F3818 `ui -> -> 0 `i `ui 447  ]
+[e :U 443 ]
+[; ;main.c: 1188: else if(USBDeviceState == CONFIGURED_STATE)
+[e $ ! == -> _USBDeviceState `i -> . `E3491 6 `i 446  ]
 [; ;main.c: 1189: {
 "1189
 {
-[; ;main.c: 1190: LATCbits.LATC2 = !LATCbits.LATC2;;
+[; ;main.c: 1190: if(led_count==0)
 "1190
-[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 1191: if(LATCbits.LATC2)
+[e $ ! == -> F3820 `ui -> -> 0 `i `ui 447  ]
+[; ;main.c: 1191: {
 "1191
-[e $ ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i 448  ]
-[; ;main.c: 1192: {
+{
+[; ;main.c: 1192: LATCbits.LATC2 = !LATCbits.LATC2;;
 "1192
-{
-[; ;main.c: 1193: LATCbits.LATC3 = 0;;
+[e = . . _LATCbits 0 2 -> -> ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;main.c: 1193: if(LATCbits.LATC2)
 "1193
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+[e $ ! != -> . . _LATCbits 0 2 `i -> -> -> 0 `i `Vuc `i 448  ]
+[; ;main.c: 1194: {
 "1194
-}
-[; ;main.c: 1194: }
-[e $U 449  ]
-"1195
-[e :U 448 ]
-[; ;main.c: 1195: else
-[; ;main.c: 1196: {
-"1196
 {
-[; ;main.c: 1197: LATCbits.LATC3 = 1;;
+[; ;main.c: 1195: LATCbits.LATC3 = 0;;
+"1195
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+"1196
+}
+[; ;main.c: 1196: }
+[e $U 449  ]
 "1197
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+[e :U 448 ]
+[; ;main.c: 1197: else
+[; ;main.c: 1198: {
 "1198
-}
-[e :U 449 ]
+{
+[; ;main.c: 1199: LATCbits.LATC3 = 1;;
 "1199
-}
-[e :U 447 ]
+[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
 "1200
 }
-[e :U 446 ]
+[e :U 449 ]
 "1201
+}
+[e :U 447 ]
+"1202
+}
+[e :U 446 ]
+"1203
 [e :U 445 ]
 [e :U 442 ]
 [e :U 440 ]
@@ -4242,284 +4244,284 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 436 ]
 }
 [e :U 434 ]
-[; ;main.c: 1198: }
-[; ;main.c: 1199: }
 [; ;main.c: 1200: }
 [; ;main.c: 1201: }
+[; ;main.c: 1202: }
 [; ;main.c: 1203: }
-"1203
+[; ;main.c: 1205: }
+"1205
 [e :UE 428 ]
 }
-"1246
+"1248
 [v _USBCBSuspend `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1245: void USBCBSuspend(void)
-[; ;main.c: 1246: {
+[; ;main.c: 1247: void USBCBSuspend(void)
+[; ;main.c: 1248: {
 [e :U _USBCBSuspend ]
 [f ]
-[; ;main.c: 1285: }
-"1285
+[; ;main.c: 1287: }
+"1287
 [e :UE 450 ]
 }
-"1309
+"1311
 [v _USBCBWakeFromSuspend `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1308: void USBCBWakeFromSuspend(void)
-[; ;main.c: 1309: {
+[; ;main.c: 1310: void USBCBWakeFromSuspend(void)
+[; ;main.c: 1311: {
 [e :U _USBCBWakeFromSuspend ]
 [f ]
-[; ;main.c: 1344: }
-"1344
+[; ;main.c: 1346: }
+"1346
 [e :UE 451 ]
 }
-"1365
+"1367
 [v _USBCB_SOF_Handler `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1364: void USBCB_SOF_Handler(void)
-[; ;main.c: 1365: {
+[; ;main.c: 1366: void USBCB_SOF_Handler(void)
+[; ;main.c: 1367: {
 [e :U _USBCB_SOF_Handler ]
 [f ]
-[; ;main.c: 1368: }
-"1368
+[; ;main.c: 1370: }
+"1370
 [e :UE 452 ]
 }
-"1388
+"1390
 [v _USBCBErrorHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1387: void USBCBErrorHandler(void)
-[; ;main.c: 1388: {
+[; ;main.c: 1389: void USBCBErrorHandler(void)
+[; ;main.c: 1390: {
 [e :U _USBCBErrorHandler ]
 [f ]
-[; ;main.c: 1407: }
-"1407
+[; ;main.c: 1409: }
+"1409
 [e :UE 453 ]
 }
-"1439
+"1441
 [v _USBCBCheckOtherReq `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1438: void USBCBCheckOtherReq(void)
-[; ;main.c: 1439: {
+[; ;main.c: 1440: void USBCBCheckOtherReq(void)
+[; ;main.c: 1441: {
 [e :U _USBCBCheckOtherReq ]
 [f ]
-[; ;main.c: 1440: USBCheckHIDRequest();
-"1440
+[; ;main.c: 1442: USBCheckHIDRequest();
+"1442
 [e ( _USBCheckHIDRequest ..  ]
-[; ;main.c: 1441: }
-"1441
+[; ;main.c: 1443: }
+"1443
 [e :UE 454 ]
 }
-"1464
+"1466
 [v _USBCBStdSetDscHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1463: void USBCBStdSetDscHandler(void)
-[; ;main.c: 1464: {
+[; ;main.c: 1465: void USBCBStdSetDscHandler(void)
+[; ;main.c: 1466: {
 [e :U _USBCBStdSetDscHandler ]
 [f ]
-[; ;main.c: 1466: }
-"1466
+[; ;main.c: 1468: }
+"1468
 [e :UE 455 ]
 }
-"1490
+"1492
 [v _USBCBInitEP `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1489: void USBCBInitEP(void)
-[; ;main.c: 1490: {
+[; ;main.c: 1491: void USBCBInitEP(void)
+[; ;main.c: 1492: {
 [e :U _USBCBInitEP ]
 [f ]
-[; ;main.c: 1492: USBEnableEndpoint(1,0x04|0x02|0x10|0x08);
-"1492
+[; ;main.c: 1494: USBEnableEndpoint(1,0x04|0x02|0x10|0x08);
+"1494
 [e ( _USBEnableEndpoint (2 , -> -> 1 `i `uc -> | | | -> 4 `i -> 2 `i -> 16 `i -> 8 `i `uc ]
-[; ;main.c: 1493: }
-"1493
+[; ;main.c: 1495: }
+"1495
 [e :UE 456 ]
 }
-"1583
+"1585
 [v _USBCBSendResume `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 1582: void USBCBSendResume(void)
-[; ;main.c: 1583: {
+[; ;main.c: 1584: void USBCBSendResume(void)
+[; ;main.c: 1585: {
 [e :U _USBCBSendResume ]
 [f ]
-"1584
-[v F3834 `us ~T0 @X0 1 s delay_count ]
-[; ;main.c: 1584: static WORD delay_count;
-[; ;main.c: 1595: if(RemoteWakeup == TRUE)
-"1595
+"1586
+[v F3836 `us ~T0 @X0 1 s delay_count ]
+[; ;main.c: 1586: static WORD delay_count;
+[; ;main.c: 1597: if(RemoteWakeup == TRUE)
+"1597
 [e $ ! == -> _RemoteWakeup `i -> . `E5 1 `i 458  ]
-[; ;main.c: 1596: {
-"1596
+[; ;main.c: 1598: {
+"1598
 {
-[; ;main.c: 1599: if(USBBusIsSuspended == TRUE)
-"1599
+[; ;main.c: 1601: if(USBBusIsSuspended == TRUE)
+"1601
 [e $ ! == -> _USBBusIsSuspended `i -> . `E5 1 `i 459  ]
-[; ;main.c: 1600: {
-"1600
+[; ;main.c: 1602: {
+"1602
 {
-[; ;main.c: 1601: ;
-[; ;main.c: 1604: USBCBWakeFromSuspend();
-"1604
-[e ( _USBCBWakeFromSuspend ..  ]
-[; ;main.c: 1605: UCONbits.SUSPND = 0;
-"1605
-[e = . . _UCONbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 1606: USBBusIsSuspended = FALSE;
+[; ;main.c: 1603: ;
+[; ;main.c: 1606: USBCBWakeFromSuspend();
 "1606
+[e ( _USBCBWakeFromSuspend ..  ]
+[; ;main.c: 1607: UCONbits.SUSPND = 0;
+"1607
+[e = . . _UCONbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 1608: USBBusIsSuspended = FALSE;
+"1608
 [e = _USBBusIsSuspended -> . `E5 0 `E5 ]
-[; ;main.c: 1615: delay_count = 3600U;
-"1615
-[e = F3834 -> -> 3600 `ui `us ]
-[; ;main.c: 1616: do
-"1616
-[e :U 462 ]
-[; ;main.c: 1617: {
+[; ;main.c: 1617: delay_count = 3600U;
 "1617
-{
-[; ;main.c: 1618: delay_count--;
+[e = F3836 -> -> 3600 `ui `us ]
+[; ;main.c: 1618: do
 "1618
-[e -- F3834 -> -> 1 `i `us ]
+[e :U 462 ]
+[; ;main.c: 1619: {
 "1619
-}
-[; ;main.c: 1619: }while(delay_count);
-[e $ != -> F3834 `ui -> -> -> 0 `i `us `ui 462  ]
-[e :U 461 ]
-[; ;main.c: 1622: UCONbits.RESUME = 1;
-"1622
-[e = . . _UCONbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 1623: delay_count = 1800U;
-"1623
-[e = F3834 -> -> 1800 `ui `us ]
-[; ;main.c: 1624: do
-"1624
-[e :U 465 ]
-[; ;main.c: 1625: {
-"1625
 {
-[; ;main.c: 1626: delay_count--;
-"1626
-[e -- F3834 -> -> 1 `i `us ]
-"1627
+[; ;main.c: 1620: delay_count--;
+"1620
+[e -- F3836 -> -> 1 `i `us ]
+"1621
 }
-[; ;main.c: 1627: }while(delay_count);
-[e $ != -> F3834 `ui -> -> -> 0 `i `us `ui 465  ]
-[e :U 464 ]
-[; ;main.c: 1628: UCONbits.RESUME = 0;
+[; ;main.c: 1621: }while(delay_count);
+[e $ != -> F3836 `ui -> -> -> 0 `i `us `ui 462  ]
+[e :U 461 ]
+[; ;main.c: 1624: UCONbits.RESUME = 1;
+"1624
+[e = . . _UCONbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 1625: delay_count = 1800U;
+"1625
+[e = F3836 -> -> 1800 `ui `us ]
+[; ;main.c: 1626: do
+"1626
+[e :U 465 ]
+[; ;main.c: 1627: {
+"1627
+{
+[; ;main.c: 1628: delay_count--;
 "1628
+[e -- F3836 -> -> 1 `i `us ]
+"1629
+}
+[; ;main.c: 1629: }while(delay_count);
+[e $ != -> F3836 `ui -> -> -> 0 `i `us `ui 465  ]
+[e :U 464 ]
+[; ;main.c: 1630: UCONbits.RESUME = 0;
+"1630
 [e = . . _UCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 1630: ;
-"1631
+[; ;main.c: 1632: ;
+"1633
 }
 [e :U 459 ]
-"1632
+"1634
 }
 [e :U 458 ]
-[; ;main.c: 1631: }
-[; ;main.c: 1632: }
 [; ;main.c: 1633: }
-"1633
+[; ;main.c: 1634: }
+[; ;main.c: 1635: }
+"1635
 [e :UE 457 ]
 }
-"1658
+"1660
 [v _USER_USB_CALLBACK_EVENT_HANDLER `(E5 ~T0 @X0 1 ef3`i`*v`us ]
 {
-[; ;main.c: 1657: BOOL USER_USB_CALLBACK_EVENT_HANDLER(int event, void *pdata, WORD size)
-[; ;main.c: 1658: {
+[; ;main.c: 1659: BOOL USER_USB_CALLBACK_EVENT_HANDLER(int event, void *pdata, WORD size)
+[; ;main.c: 1660: {
 [e :U _USER_USB_CALLBACK_EVENT_HANDLER ]
 [v _event `i ~T0 @X0 1 r1 ]
 [v _pdata `*v ~T0 @X0 1 r2 ]
 [v _size `us ~T0 @X0 1 r3 ]
 [f ]
-[; ;main.c: 1659: switch( event )
-"1659
-[e $U 468  ]
-[; ;main.c: 1660: {
-"1660
-{
-[; ;main.c: 1661: case EVENT_TRANSFER:
+[; ;main.c: 1661: switch( event )
 "1661
-[e :U 469 ]
-[; ;main.c: 1663: break;
+[e $U 468  ]
+[; ;main.c: 1662: {
+"1662
+{
+[; ;main.c: 1663: case EVENT_TRANSFER:
 "1663
-[e $U 467  ]
-[; ;main.c: 1664: case EVENT_SOF:
-"1664
-[e :U 470 ]
-[; ;main.c: 1665: USBCB_SOF_Handler();
+[e :U 469 ]
+[; ;main.c: 1665: break;
 "1665
-[e ( _USBCB_SOF_Handler ..  ]
-[; ;main.c: 1666: break;
+[e $U 467  ]
+[; ;main.c: 1666: case EVENT_SOF:
 "1666
-[e $U 467  ]
-[; ;main.c: 1667: case EVENT_SUSPEND:
+[e :U 470 ]
+[; ;main.c: 1667: USBCB_SOF_Handler();
 "1667
-[e :U 471 ]
-[; ;main.c: 1668: USBCBSuspend();
+[e ( _USBCB_SOF_Handler ..  ]
+[; ;main.c: 1668: break;
 "1668
-[e ( _USBCBSuspend ..  ]
-[; ;main.c: 1669: break;
+[e $U 467  ]
+[; ;main.c: 1669: case EVENT_SUSPEND:
 "1669
-[e $U 467  ]
-[; ;main.c: 1670: case EVENT_RESUME:
+[e :U 471 ]
+[; ;main.c: 1670: USBCBSuspend();
 "1670
-[e :U 472 ]
-[; ;main.c: 1671: USBCBWakeFromSuspend();
+[e ( _USBCBSuspend ..  ]
+[; ;main.c: 1671: break;
 "1671
-[e ( _USBCBWakeFromSuspend ..  ]
-[; ;main.c: 1672: break;
+[e $U 467  ]
+[; ;main.c: 1672: case EVENT_RESUME:
 "1672
-[e $U 467  ]
-[; ;main.c: 1673: case EVENT_CONFIGURED:
+[e :U 472 ]
+[; ;main.c: 1673: USBCBWakeFromSuspend();
 "1673
-[e :U 473 ]
-[; ;main.c: 1674: USBCBInitEP();
+[e ( _USBCBWakeFromSuspend ..  ]
+[; ;main.c: 1674: break;
 "1674
-[e ( _USBCBInitEP ..  ]
-[; ;main.c: 1675: break;
+[e $U 467  ]
+[; ;main.c: 1675: case EVENT_CONFIGURED:
 "1675
-[e $U 467  ]
-[; ;main.c: 1676: case EVENT_SET_DESCRIPTOR:
+[e :U 473 ]
+[; ;main.c: 1676: USBCBInitEP();
 "1676
-[e :U 474 ]
-[; ;main.c: 1677: USBCBStdSetDscHandler();
+[e ( _USBCBInitEP ..  ]
+[; ;main.c: 1677: break;
 "1677
-[e ( _USBCBStdSetDscHandler ..  ]
-[; ;main.c: 1678: break;
+[e $U 467  ]
+[; ;main.c: 1678: case EVENT_SET_DESCRIPTOR:
 "1678
-[e $U 467  ]
-[; ;main.c: 1679: case EVENT_EP0_REQUEST:
+[e :U 474 ]
+[; ;main.c: 1679: USBCBStdSetDscHandler();
 "1679
-[e :U 475 ]
-[; ;main.c: 1680: USBCBCheckOtherReq();
+[e ( _USBCBStdSetDscHandler ..  ]
+[; ;main.c: 1680: break;
 "1680
-[e ( _USBCBCheckOtherReq ..  ]
-[; ;main.c: 1681: break;
+[e $U 467  ]
+[; ;main.c: 1681: case EVENT_EP0_REQUEST:
 "1681
-[e $U 467  ]
-[; ;main.c: 1682: case EVENT_BUS_ERROR:
+[e :U 475 ]
+[; ;main.c: 1682: USBCBCheckOtherReq();
 "1682
-[e :U 476 ]
-[; ;main.c: 1683: USBCBErrorHandler();
+[e ( _USBCBCheckOtherReq ..  ]
+[; ;main.c: 1683: break;
 "1683
-[e ( _USBCBErrorHandler ..  ]
-[; ;main.c: 1684: break;
+[e $U 467  ]
+[; ;main.c: 1684: case EVENT_BUS_ERROR:
 "1684
-[e $U 467  ]
-[; ;main.c: 1685: case EVENT_TRANSFER_TERMINATED:
+[e :U 476 ]
+[; ;main.c: 1685: USBCBErrorHandler();
 "1685
-[e :U 477 ]
-[; ;main.c: 1694: break;
-"1694
+[e ( _USBCBErrorHandler ..  ]
+[; ;main.c: 1686: break;
+"1686
 [e $U 467  ]
-[; ;main.c: 1695: default:
-"1695
-[e :U 478 ]
+[; ;main.c: 1687: case EVENT_TRANSFER_TERMINATED:
+"1687
+[e :U 477 ]
 [; ;main.c: 1696: break;
 "1696
 [e $U 467  ]
+[; ;main.c: 1697: default:
 "1697
-}
-[; ;main.c: 1697: }
+[e :U 478 ]
+[; ;main.c: 1698: break;
+"1698
 [e $U 467  ]
-"1659
+"1699
+}
+[; ;main.c: 1699: }
+[e $U 467  ]
+"1661
 [e :U 468 ]
 [e [\ _event , $ -> . `E3263 16 `i 469
  , $ -> . `E3263 17 `i 470
@@ -4531,13 +4533,13 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> . `E3263 33 `i 476
  , $ -> . `E3500 4 `i 477
  478 ]
-"1697
+"1699
 [e :U 467 ]
-[; ;main.c: 1698: return TRUE;
-"1698
+[; ;main.c: 1700: return TRUE;
+"1700
 [e ) -> . `E5 1 `E5 ]
 [e $UE 466  ]
-[; ;main.c: 1699: }
-"1699
+[; ;main.c: 1701: }
+"1701
 [e :UE 466 ]
 }

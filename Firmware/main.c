@@ -354,6 +354,8 @@ typedef union _INTPUT_CONTROLS_TYPEDEF
             BYTE X;
             BYTE Y;
             BYTE Z;
+            BYTE Rx;
+            BYTE Ry;
             BYTE Rz;
         } analog_stick;
     } members;

@@ -7,7 +7,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S404 . bLength bDscType string ]
 [s S405 `uc 1 `uc 1 `us -> 22 `i ]
 [n S405 . bLength bDscType string ]
-[s S406 `uc -> 74 `i ]
+[s S406 `uc -> 78 `i ]
 [n S406 . report ]
 [; ;stddef.h: 2: typedef int ptrdiff_t;
 [; ;stddef.h: 3: typedef unsigned size_t;
@@ -3664,8 +3664,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "213
 -> -> 34 `i `uc
 "214
--> & -> 74 `i -> 255 `i `uc
--> & >> -> 74 `i -> 8 `i -> 255 `i `uc
+-> & -> 78 `i -> 255 `i `uc
+-> & >> -> 78 `i -> 8 `i -> 255 `i `uc
 "217
 -> -> 7 `i `uc
 "218
@@ -3718,7 +3718,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usb_descriptors.c: 211: 0x00,
 [; ;usb_descriptors.c: 212: 1,
 [; ;usb_descriptors.c: 213: 0x22,
-[; ;usb_descriptors.c: 214: (74&0xFF),((74>>8)&0xFF),
+[; ;usb_descriptors.c: 214: (78&0xFF),((78>>8)&0xFF),
 [; ;usb_descriptors.c: 217: 0x07,
 [; ;usb_descriptors.c: 218: 0x05,
 [; ;usb_descriptors.c: 219: 1 | 0x80,
@@ -3970,23 +3970,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 50 `i `uc
 "298
 -> -> 9 `i `uc
--> -> 53 `i `uc
+-> -> 51 `i `uc
 "299
+-> -> 9 `i `uc
+-> -> 52 `i `uc
+"300
+-> -> 9 `i `uc
+-> -> 53 `i `uc
+"301
 -> -> 117 `i `uc
 -> -> 8 `i `uc
-"300
+"302
 -> -> 149 `i `uc
--> -> 4 `i `uc
-"301
+-> -> 6 `i `uc
+"303
 -> -> 129 `i `uc
 -> -> 2 `i `uc
-"303
+"305
 -> -> 192 `i `uc
 ..
 ..
 ..
 ]
-[; ;usb_descriptors.c: 266: const struct{BYTE report[74];}hid_rpt01={{
+[; ;usb_descriptors.c: 266: const struct{BYTE report[78];}hid_rpt01={{
 [; ;usb_descriptors.c: 267: 0x05,0x01,
 [; ;usb_descriptors.c: 268: 0x09,0x05,
 [; ;usb_descriptors.c: 269: 0xA1,0x01,
@@ -4018,10 +4024,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;usb_descriptors.c: 295: 0x09,0x30,
 [; ;usb_descriptors.c: 296: 0x09,0x31,
 [; ;usb_descriptors.c: 297: 0x09,0x32,
-[; ;usb_descriptors.c: 298: 0x09,0x35,
-[; ;usb_descriptors.c: 299: 0x75,0x08,
-[; ;usb_descriptors.c: 300: 0x95,0x04,
-[; ;usb_descriptors.c: 301: 0x81,0x02,
-[; ;usb_descriptors.c: 302: 0xC0
-[; ;usb_descriptors.c: 303: }
-[; ;usb_descriptors.c: 304: };
+[; ;usb_descriptors.c: 298: 0x09,0x33,
+[; ;usb_descriptors.c: 299: 0x09,0x34,
+[; ;usb_descriptors.c: 300: 0x09,0x35,
+[; ;usb_descriptors.c: 301: 0x75,0x08,
+[; ;usb_descriptors.c: 302: 0x95,0x06,
+[; ;usb_descriptors.c: 303: 0x81,0x02,
+[; ;usb_descriptors.c: 304: 0xC0
+[; ;usb_descriptors.c: 305: }
+[; ;usb_descriptors.c: 306: };

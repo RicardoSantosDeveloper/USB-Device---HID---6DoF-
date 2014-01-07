@@ -371,7 +371,7 @@ EVENT_TRANSFER_TERMINATED 5
 [s S1400 . 5 `S66 1 pSrc 2 0 `S76 1 info 1 2 `S99 1 wCount 2 3 ]
 "380 ../../../../Microchip/Include/./USB/usb_function_hid.h
 [s S1406 _USB_HID_DSC 6 `uc 1 bLength 1 0 `uc 1 bDescriptorType 1 1 `us 1 bcdHID 2 2 `uc 1 bCountryCode 1 4 `uc 1 bNumDsc 1 5 ]
-[s S1412 . 74 `[74]uc 1 report 74 0 ]
+[s S1412 . 78 `[78]uc 1 report 78 0 ]
 "5959 /Applications/microchip/xc8/v1.12/include/pic16f1459.h
 [s S1492 . 2 `uc 1 square 1 0 :1:0 
 `uc 1 x 1 0 :1:1 
@@ -391,18 +391,18 @@ EVENT_TRANSFER_TERMINATED 5
 [s S1507 . 1 `uc 1 hat_switch 1 0 :4:0 
 `uc 1 . 1 0 :4:4 
 ]
-[s S1510 . 4 `uc 1 X 1 0 `uc 1 Y 1 1 `uc 1 Z 1 2 `uc 1 Rz 1 3 ]
-[s S1515 . 7 `S1492 1 buttons 2 0 `S1507 1 hat_switch 1 2 `S1510 1 analog_stick 4 3 ]
-[u S1519 _INTPUT_CONTROLS_TYPEDEF 7 `S1515 1 members 7 0 `[7]uc 1 val 7 0 ]
+[s S1510 . 6 `uc 1 X 1 0 `uc 1 Y 1 1 `uc 1 Z 1 2 `uc 1 Rx 1 3 `uc 1 Ry 1 4 `uc 1 Rz 1 5 ]
+[s S1517 . 9 `S1492 1 buttons 2 0 `S1507 1 hat_switch 1 2 `S1510 1 analog_stick 6 3 ]
+[u S1521 _INTPUT_CONTROLS_TYPEDEF 9 `S1517 1 members 9 0 `[7]uc 1 val 7 0 ]
 "1034
-[s S1541 . 1 `uc 1 RA0 1 0 :1:0 
+[s S1543 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
 `uc 1 RA4 1 0 :1:4 
 `uc 1 RA5 1 0 :1:5 
 ]
-[u S1548 . 1 `S1541 1 . 1 0 ]
+[u S1550 . 1 `S1543 1 . 1 0 ]
 "303 ../main.c
 [e E3491 . `uc
 DETACHED_STATE 0
@@ -414,7 +414,7 @@ ADDRESS_STATE 16
 CONFIGURED_STATE 32
 ]
 "1983 ../../../../Microchip/Include/USB/usb_device.h
-[s S1571 . 1 `uc 1 . 1 0 :1:0 
+[s S1573 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 SUSPND 1 0 :1:1 
 `uc 1 RESUME 1 0 :1:2 
 `uc 1 USBEN 1 0 :1:3 
@@ -422,9 +422,9 @@ CONFIGURED_STATE 32
 `uc 1 SE0 1 0 :1:5 
 `uc 1 PPBRST 1 0 :1:6 
 ]
-[u S1579 . 1 `S278 1 . 1 0 ]
+[u S1581 . 1 `S278 1 . 1 0 ]
 "312 ../main.c
-[s S1586 . 1 `uc 1 BC8 1 0 :1:0 
+[s S1588 . 1 `uc 1 BC8 1 0 :1:0 
 `uc 1 BC9 1 0 :1:1 
 `uc 1 BSTALL 1 0 :1:2 
 `uc 1 DTSEN 1 0 :1:3 
@@ -433,29 +433,29 @@ CONFIGURED_STATE 32
 `uc 1 DTS 1 0 :1:6 
 `uc 1 UOWN 1 0 :1:7 
 ]
-[s S1595 . 1 `uc 1 . 1 0 :2:0 
+[s S1597 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PID0 1 0 :1:2 
 `uc 1 PID1 1 0 :1:3 
 `uc 1 PID2 1 0 :1:4 
 `uc 1 PID3 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 ]
-[s S1602 . 1 `uc 1 . 1 0 :2:0 
+[s S1604 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PID 1 0 :4:2 
 `uc 1 . 1 0 :2:6 
 ]
-[u S1606 _BD_STAT 1 `uc 1 Val 1 0 `S27 1 . 1 0 `S36 1 . 1 0 `S43 1 . 1 0 ]
-[s S1611 . 4 `S47 1 STAT 1 0 `uc 1 CNT 1 1 `uc 1 ADRL 1 2 `uc 1 ADRH 1 3 ]
-[s S1616 . 4 `uc 1 filler1 1 0 :8:0 
+[u S1608 _BD_STAT 1 `uc 1 Val 1 0 `S27 1 . 1 0 `S36 1 . 1 0 `S43 1 . 1 0 ]
+[s S1613 . 4 `S47 1 STAT 1 0 `uc 1 CNT 1 1 `uc 1 ADRL 1 2 `uc 1 ADRH 1 3 ]
+[s S1618 . 4 `uc 1 filler1 1 0 :8:0 
 `uc 1 filler2 1 1 :8:0 
 `us 1 ADR 2 2 ]
-[u S1620 __BDT 4 `S52 1 . 4 0 `S57 1 . 4 0 `ul 1 Val 4 0 `[4]uc 1 v 4 0 ]
+[u S1622 __BDT 4 `S52 1 . 4 0 `S57 1 . 4 0 `ul 1 Val 4 0 `[4]uc 1 v 4 0 ]
 "502 ../../../../Microchip/Include/USB/usb_device.h
 [e E5 _BOOL `uc
 FALSE 0
 TRUE 1
 ]
-[s S1629 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S1631 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -464,7 +464,7 @@ TRUE 1
 `uc 1 LATC6 1 0 :1:6 
 `uc 1 LATC7 1 0 :1:7 
 ]
-[u S1638 . 1 `S1629 1 . 1 0 ]
+[u S1640 . 1 `S1631 1 . 1 0 ]
 "1982
 [e E3263 . `ui
 EVENT_NONE 0
@@ -509,14 +509,14 @@ EVENT_EP0_REQUEST 3
 EVENT_ATTACH 4
 EVENT_TRANSFER_TERMINATED 5
 ]
-"539 ../main.c
-[v F3805 `(v  1 t 0 ]
-"1699
-[s S1820 _USB_DEVICE_DESCRIPTOR 18 `uc 1 bLength 1 0 `uc 1 bDescriptorType 1 1 `us 1 bcdUSB 2 2 `uc 1 bDeviceClass 1 4 `uc 1 bDeviceSubClass 1 5 `uc 1 bDeviceProtocol 1 6 `uc 1 bMaxPacketSize0 1 7 `us 1 idVendor 2 8 `us 1 idProduct 2 10 `us 1 bcdDevice 2 12 `uc 1 iManufacturer 1 14 `uc 1 iProduct 1 15 `uc 1 iSerialNumber 1 16 `uc 1 bNumConfigurations 1 17 ]
-[s S1835 . 4 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[1]us 1 string 2 2 ]
-[s S1839 . 52 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[25]us 1 string 50 2 ]
-[s S1843 . 46 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[22]us 1 string 44 2 ]
-[s S1847 . 74 `[74]uc 1 report 74 0 ]
+"541 ../main.c
+[v F3807 `(v  1 t 0 ]
+"1701
+[s S1826 _USB_DEVICE_DESCRIPTOR 18 `uc 1 bLength 1 0 `uc 1 bDescriptorType 1 1 `us 1 bcdUSB 2 2 `uc 1 bDeviceClass 1 4 `uc 1 bDeviceSubClass 1 5 `uc 1 bDeviceProtocol 1 6 `uc 1 bMaxPacketSize0 1 7 `us 1 idVendor 2 8 `us 1 idProduct 2 10 `us 1 bcdDevice 2 12 `uc 1 iManufacturer 1 14 `uc 1 iProduct 1 15 `uc 1 iSerialNumber 1 16 `uc 1 bNumConfigurations 1 17 ]
+[s S1841 . 4 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[1]us 1 string 2 2 ]
+[s S1845 . 52 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[25]us 1 string 50 2 ]
+[s S1849 . 46 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[22]us 1 string 44 2 ]
+[s S1853 . 78 `[78]uc 1 report 78 0 ]
 "253 ../usb_descriptors.c
 [v F3765 `*DCCuc  1 t 2 ]
 "255
@@ -581,41 +581,41 @@ EVENT_TRANSFER_TERMINATED 5
 [v _USBStdFeatureReqHandler `(v  1 s 0 USBStdFeatureReqHandler ]
 "10 /Applications/microchip/xc8/v1.12/sources/memset.c
 [v _memset `(*v  1 e 1 0 ]
-"539 ../main.c
+"541 ../main.c
 [v _ISRCode `II(v  1 e 0 0 ]
-"577
+"579
 [v _main `(i  1 e 2 0 ]
-"631
+"633
 [v _InitializeSystem `(v  1 s 0 InitializeSystem ]
-"856
+"858
 [v _UserInit `(v  1 e 0 0 ]
-"891
+"893
 [v _ProcessIO `(v  1 e 0 0 ]
-"924
+"926
 [v _Joystick `(v  1 e 0 0 ]
-"1001
+"1003
 [v _Switch2IsPressed `(E5  1 e 1 0 ]
-"1028
+"1030
 [v _Switch3IsPressed `(E5  1 e 1 0 ]
-"1134
+"1136
 [v _BlinkUSBStatus `(v  1 e 0 0 ]
-"1246
+"1248
 [v _USBCBSuspend `(v  1 e 0 0 ]
-"1309
+"1311
 [v _USBCBWakeFromSuspend `(v  1 e 0 0 ]
-"1365
+"1367
 [v _USBCB_SOF_Handler `(v  1 e 0 0 ]
-"1388
+"1390
 [v _USBCBErrorHandler `(v  1 e 0 0 ]
-"1439
+"1441
 [v _USBCBCheckOtherReq `(v  1 e 0 0 ]
-"1464
+"1466
 [v _USBCBStdSetDscHandler `(v  1 e 0 0 ]
-"1490
+"1492
 [v _USBCBInitEP `(v  1 e 0 0 ]
-"1583
+"1585
 [v _USBCBSendResume `(v  1 e 0 0 ]
-"1658
+"1660
 [v _USER_USB_CALLBACK_EVENT_HANDLER `(E5  1 e 1 0 ]
 "5 /Applications/microchip/xc8/v1.12/sources/abdiv.c
 [v ___abdiv `(c  1 e 1 0 ]
@@ -873,10 +873,10 @@ EVENT_TRANSFER_TERMINATED 5
 [v _SetupPkt `VES239  1 e 8 @64 ]
 "332
 [v _CtrlTrfData `VE[8]uc  1 e 8 @72 ]
-"367 ../main.c
+"369 ../main.c
 [v _old_sw2 `uc  1 e 1 0 ]
 [v _old_sw3 `uc  1 e 1 0 ]
-"368
+"370
 [v _lastTransmission `*.0v  1 e 1 0 ]
 [s S1492 . 2 `uc 1 square 1 0 :1:0 
 `uc 1 x 1 0 :1:1 
@@ -893,38 +893,38 @@ EVENT_TRANSFER_TERMINATED 5
 `uc 1 home 1 1 :1:4 
 `uc 1 . 1 1 :3:5 
 ]
-"423
+"425
 [s S1507 . 1 `uc 1 hat_switch 1 0 :4:0 
 `uc 1 . 1 0 :4:4 
 ]
-[s S1510 . 4 `uc 1 X 1 0 `uc 1 Y 1 1 `uc 1 Z 1 2 `uc 1 Rz 1 3 ]
-[s S1515 . 7 `S1492 1 buttons 2 0 `S1507 1 hat_switch 1 2 `S1510 1 analog_stick 4 3 ]
-[u S1519 _INTPUT_CONTROLS_TYPEDEF 7 `S1515 1 members 7 0 `[7]uc 1 val 7 0 ]
-[v _joystick_input `S1519  1 e 7 @160 ]
-"424
+[s S1510 . 6 `uc 1 X 1 0 `uc 1 Y 1 1 `uc 1 Z 1 2 `uc 1 Rx 1 3 `uc 1 Ry 1 4 `uc 1 Rz 1 5 ]
+[s S1517 . 9 `S1492 1 buttons 2 0 `S1507 1 hat_switch 1 2 `S1510 1 analog_stick 6 3 ]
+[u S1521 _INTPUT_CONTROLS_TYPEDEF 9 `S1517 1 members 9 0 `[7]uc 1 val 7 0 ]
+[v _joystick_input `S1521  1 e 9 @160 ]
+"426
 [v _hid_report `[8]uc  1 e 8 @224 ]
 [s S444 _USB_DEVICE_DESCRIPTOR 18 `uc 1 bLength 1 0 `uc 1 bDescriptorType 1 1 `us 1 bcdUSB 2 2 `uc 1 bDeviceClass 1 4 `uc 1 bDeviceSubClass 1 5 `uc 1 bDeviceProtocol 1 6 `uc 1 bMaxPacketSize0 1 7 `us 1 idVendor 2 8 `us 1 idProduct 2 10 `us 1 bcdDevice 2 12 `uc 1 iManufacturer 1 14 `uc 1 iProduct 1 15 `uc 1 iSerialNumber 1 16 `uc 1 bNumConfigurations 1 17 ]
 "166 ../usb_descriptors.c
 [v _device_dsc `DCCS444  1 e 18 0 ]
 "185
 [v _configDescriptor1 `DCC[41]uc  1 e 41 0 ]
-[s S1835 . 4 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[1]us 1 string 2 2 ]
+[s S1841 . 4 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[1]us 1 string 2 2 ]
 "235
-[v _sd000 `DCCS1835  1 e 4 0 ]
-[s S1839 . 52 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[25]us 1 string 50 2 ]
+[v _sd000 `DCCS1841  1 e 4 0 ]
+[s S1845 . 52 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[25]us 1 string 50 2 ]
 "240
-[v _sd001 `DCCS1839  1 e 52 0 ]
-[s S1843 . 46 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[22]us 1 string 44 2 ]
+[v _sd001 `DCCS1845  1 e 52 0 ]
+[s S1849 . 46 `uc 1 bLength 1 0 `uc 1 bDscType 1 1 `[22]us 1 string 44 2 ]
 "247
-[v _sd002 `DCCS1843  1 e 46 0 ]
+[v _sd002 `DCCS1849  1 e 46 0 ]
 "253
 [v _USB_CD_Ptr `DCC[1]*DCCuc  1 e 2 0 ]
 "259
 [v _USB_SD_Ptr `DCC[3]*DCCuc  1 e 6 0 ]
-[s S1412 . 74 `[74]uc 1 report 74 0 ]
+[s S1412 . 78 `[78]uc 1 report 78 0 ]
 "266
-[v _hid_rpt01 `DCCS1412  1 e 74 0 ]
-[s S1541 . 1 `uc 1 RA0 1 0 :1:0 
+[v _hid_rpt01 `DCCS1412  1 e 78 0 ]
+[s S1543 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -932,8 +932,8 @@ EVENT_TRANSFER_TERMINATED 5
 `uc 1 RA5 1 0 :1:5 
 ]
 "424 /Applications/microchip/xc8/v1.12/include/pic16f1459.h
-[u S1548 . 1 `S1541 1 . 1 0 ]
-[v _PORTAbits `VES1548  1 e 1 @12 ]
+[u S1550 . 1 `S1543 1 . 1 0 ]
+[v _PORTAbits `VES1550  1 e 1 @12 ]
 [s S250 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ACTIE 1 0 :1:1 
 `uc 1 USBIE 1 0 :1:2 
@@ -1004,10 +1004,10 @@ EVENT_TRANSFER_TERMINATED 5
 [v _UEP0bits `VES484  1 e 1 @3736 ]
 "5454
 [v _UEP1 `VEuc  1 e 1 @3737 ]
-"577 ../main.c
+"579 ../main.c
 [v _main `(i  1 e 2 0 ]
 {
-"607
+"609
 } 0
 "669 ../../../../Microchip/USB/usb_device.c
 [v _USBDeviceTasks `(v  1 e 0 0 ]
@@ -1053,45 +1053,6 @@ EVENT_TRANSFER_TERMINATED 5
 {
 "1687
 } 0
-"2839
-[v _USBCheckStdRequest `(v  1 s 0 USBCheckStdRequest ]
-{
-"2885
-} 0
-"2132
-[v _USBStdSetCfgHandler `(v  1 s 0 USBStdSetCfgHandler ]
-{
-"2139
-[v USBStdSetCfgHandler@p `*uc  1 a 2 9 ]
-[v USBStdSetCfgHandler@i_1089 `uc  1 a 1 11 ]
-"2133
-[v USBStdSetCfgHandler@i `uc  1 a 1 12 ]
-"2187
-} 0
-"10 /Applications/microchip/xc8/v1.12/sources/memset.c
-[v _memset `(*v  1 e 1 0 ]
-{
-[v memset@p1 `*.0v  1 a 1 wreg ]
-"15
-[v memset@p `*.0uc  1 a 1 7 ]
-"10
-[v memset@p1 `*.0v  1 a 1 wreg ]
-[v memset@c `i  1 p 2 1 ]
-[v memset@n `ui  1 p 2 3 ]
-"22
-} 0
-"2207 ../../../../Microchip/USB/usb_device.c
-[v _USBStdGetDscHandler `(v  1 s 0 USBStdGetDscHandler ]
-{
-"2265
-} 0
-"2283
-[v _USBStdGetStatusHandler `(v  1 s 0 USBStdGetStatusHandler ]
-{
-"2314
-[v USBStdGetStatusHandler@p `*.0S61  1 a 1 2 ]
-"2337
-} 0
 "2695
 [v _USBCtrlTrfOutHandler `(v  1 s 0 USBCtrlTrfOutHandler ]
 {
@@ -1125,7 +1086,46 @@ EVENT_TRANSFER_TERMINATED 5
 [v USBCtrlTrfTxService@byteToSend `uc  1 a 1 3 ]
 "1991
 } 0
-"2907
+"2839
+[v _USBCheckStdRequest `(v  1 s 0 USBCheckStdRequest ]
+{
+"2885
+} 0
+"2283
+[v _USBStdGetStatusHandler `(v  1 s 0 USBStdGetStatusHandler ]
+{
+"2314
+[v USBStdGetStatusHandler@p `*.0S61  1 a 1 2 ]
+"2337
+} 0
+"2207
+[v _USBStdGetDscHandler `(v  1 s 0 USBStdGetDscHandler ]
+{
+"2265
+} 0
+"2132
+[v _USBStdSetCfgHandler `(v  1 s 0 USBStdSetCfgHandler ]
+{
+"2139
+[v USBStdSetCfgHandler@p `*uc  1 a 2 9 ]
+[v USBStdSetCfgHandler@i_1089 `uc  1 a 1 11 ]
+"2133
+[v USBStdSetCfgHandler@i `uc  1 a 1 12 ]
+"2187
+} 0
+"10 /Applications/microchip/xc8/v1.12/sources/memset.c
+[v _memset `(*v  1 e 1 0 ]
+{
+[v memset@p1 `*.0v  1 a 1 wreg ]
+"15
+[v memset@p `*.0uc  1 a 1 7 ]
+"10
+[v memset@p1 `*.0v  1 a 1 wreg ]
+[v memset@c `i  1 p 2 1 ]
+[v memset@n `ui  1 p 2 3 ]
+"22
+} 0
+"2907 ../../../../Microchip/USB/usb_device.c
 [v _USBStdFeatureReqHandler `(v  1 s 0 USBStdFeatureReqHandler ]
 {
 "2913
@@ -1140,18 +1140,18 @@ EVENT_TRANSFER_TERMINATED 5
 [v USBStdFeatureReqHandler@current_ep_data `S137  1 a 1 12 ]
 "3131
 } 0
-"1658 ../main.c
+"1660 ../main.c
 [v _USER_USB_CALLBACK_EVENT_HANDLER `(E5  1 e 1 0 ]
 {
 [v USER_USB_CALLBACK_EVENT_HANDLER@event `i  1 p 2 3 ]
 [v USER_USB_CALLBACK_EVENT_HANDLER@pdata `*.0v  1 p 1 5 ]
 [v USER_USB_CALLBACK_EVENT_HANDLER@size `us  1 p 2 6 ]
-"1699
+"1701
 } 0
-"631
+"633
 [v _InitializeSystem `(v  1 s 0 InitializeSystem ]
 {
-"834
+"836
 } 0
 "467 ../../../../Microchip/USB/usb_device.c
 [v _USBDeviceInit `(v  1 e 0 0 ]
@@ -1163,27 +1163,15 @@ EVENT_TRANSFER_TERMINATED 5
 [v USBDeviceInit@i `uc  1 a 1 6 ]
 "552
 } 0
-"891 ../main.c
+"893 ../main.c
 [v _ProcessIO `(v  1 e 0 0 ]
 {
-"900
+"902
 } 0
-"856
-[v _UserInit `(v  1 e 0 0 ]
-{
-"870
-} 0
-"1134
-[v _BlinkUSBStatus `(v  1 e 0 0 ]
-{
-"1135
-[v BlinkUSBStatus@led_count `us  1 s 2 led_count ]
-"1203
-} 0
-"924
+"926
 [v _Joystick `(v  1 e 0 0 ]
 {
-"980
+"982
 } 0
 "1173 ../../../../Microchip/USB/usb_device.c
 [v _USBTransferOnePacket `(*v  1 e 1 0 ]
@@ -1198,45 +1186,57 @@ EVENT_TRANSFER_TERMINATED 5
 [v USBTransferOnePacket@len `uc  1 p 1 3 ]
 "1223
 } 0
-"1246 ../main.c
+"1136 ../main.c
+[v _BlinkUSBStatus `(v  1 e 0 0 ]
+{
+"1137
+[v BlinkUSBStatus@led_count `us  1 s 2 led_count ]
+"1205
+} 0
+"858
+[v _UserInit `(v  1 e 0 0 ]
+{
+"872
+} 0
+"1248
 [v _USBCBSuspend `(v  1 e 0 0 ]
 {
-"1285
+"1287
 } 0
-"1309
+"1311
 [v _USBCBWakeFromSuspend `(v  1 e 0 0 ]
 {
-"1344
+"1346
 } 0
-"1365
+"1367
 [v _USBCB_SOF_Handler `(v  1 e 0 0 ]
 {
-"1368
+"1370
 } 0
-"1388
+"1390
 [v _USBCBErrorHandler `(v  1 e 0 0 ]
 {
-"1407
+"1409
 } 0
-"1439
+"1441
 [v _USBCBCheckOtherReq `(v  1 e 0 0 ]
 {
-"1441
+"1443
 } 0
 "176 ../../../../Microchip/USB/HID Device Driver/usb_function_hid.c
 [v _USBCheckHIDRequest `(v  1 e 0 0 ]
 {
 "262
 } 0
-"1464 ../main.c
+"1466 ../main.c
 [v _USBCBStdSetDscHandler `(v  1 e 0 0 ]
 {
-"1466
+"1468
 } 0
-"1490
+"1492
 [v _USBCBInitEP `(v  1 e 0 0 ]
 {
-"1493
+"1495
 } 0
 "1056 ../../../../Microchip/USB/usb_device.c
 [v _USBEnableEndpoint `(v  1 e 0 0 ]
@@ -1260,8 +1260,8 @@ EVENT_TRANSFER_TERMINATED 5
 [v USBConfigureEndpoint@direction `uc  1 p 1 1 ]
 "1754
 } 0
-"539 ../main.c
+"541 ../main.c
 [v _ISRCode `II(v  1 e 0 0 ]
 {
-"548
+"550
 } 0
