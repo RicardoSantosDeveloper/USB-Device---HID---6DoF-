@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="62">
   <projectmakefile>Makefile</projectmakefile>
-  <defaultConf>0</defaultConf>
+  <defaultConf>17</defaultConf>
   <confs>
     <conf name="LPC_USB_Development_Kit_PIC16F1459" type="2">
       <platformToolSN></platformToolSN>
@@ -310,7 +310,7 @@
       </runprofile>
     </conf>
     <conf name="PIC32MX795F512L_PIM" type="2">
-      <platformToolSN></platformToolSN>
+      <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>04D8:=&lt;pid>900A:=&lt;rev>0002:=&lt;man>Microchip Technology Inc.:=&lt;prod>PICkit 3:=&lt;sn>BUR112839972:=&lt;drv>x:=end</platformToolSN>
       <languageToolchainDir>/Applications/microchip/xc32/v1.30/bin</languageToolchainDir>
       <mdbdebugger version="1">
         <placeholder1>place holder 1</placeholder1>

@@ -359,7 +359,7 @@ typedef union _INTPUT_CONTROLS_TYPEDEF
             BYTE Rz;
         } analog_stick;
     } members;
-    BYTE val[7];
+    BYTE val[9];
 } INPUT_CONTROLS;
 
 /** VARIABLES ******************************************************/
@@ -973,6 +973,8 @@ void Joystick(void)
             joystick_input.val[4] = 0x80;
             joystick_input.val[5] = 0x80;
             joystick_input.val[6] = 0x80;
+            joystick_input.val[7] = 0x80;
+            joystick_input.val[8] = 0x80;
 
            	//Send the 8 byte packet over USB to the host.
            	lastTransmission = HIDTxPacket(HID_EP, (BYTE*)&joystick_input, sizeof(joystick_input));
